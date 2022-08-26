@@ -1,0 +1,15 @@
+.tabla
+{
+	@apply text-left px-12 text-green-600;
+}
+
+.tdTabla
+{
+	@apply text-left px-12 bg-gray-200 text-green-600;
+}
+
+.trTabla
+{
+	@apply border border-b;
+}
+

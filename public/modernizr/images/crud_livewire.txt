@@ -1,0 +1,39 @@
+wire:click="showPost({{ $post->id }})"
+
+
+<img @click="open = !open" wire:click="showPost({{ $post->id }})" src="{{ $post->image }}" alt="">
+
+Componente A Clase:
+
+public function showPost($id){
+    $post = Post::find($id);
+    $this->post = $post;
+    $this->emit('newPost', $post->id);
+  }
+
+ahora puede ver ese evento desde otro componente livewire como este:
+
+Componente B Clase:
+
+class Post extends Component
+{
+
+  public $post;
+
+  protected $listeners = ['newPost'];
+
+  public function mount($id)
+  {
+    $this->post = \App\Post::find($id);
+  }
+
+   public function render()
+   {
+        return view('livewire.post');
+   }
+
+   public function newPost($postId)
+   {
+       // here u have the id in your other component. 
+   }
+}
